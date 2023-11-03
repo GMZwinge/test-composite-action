@@ -1,5 +1,6 @@
-on: [push]
-
+on:
+  #push:
+  workflow_dispatch:
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
@@ -7,7 +8,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: foo
+        # This probably uses https://github.com/gmzwinge/hello-world-composite-action/action.yml
         uses: gmzwinge/hello-world-composite-action@v4
+        # This probably uses https://github.com/gmzwinge/hello-world-composite-action/.github/actions/action/action.yml
+        #uses: gmzwinge/hello-world-composite-action/.github/actions/action@v4
         with:
           who-to-greet: 'Mona the Octocat'
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
